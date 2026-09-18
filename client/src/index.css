@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* Browser की default spacing हटाना */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* पूरी website की basic styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+/* Links की default underline हटाना */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Buttons और inputs में same font */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Main app की minimum height */
+#root {
+  min-height: 100vh;
+}

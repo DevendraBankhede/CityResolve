@@ -79,7 +79,7 @@ const Login = () => {
             {/* Role Selector Tabs */}
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-2">Select Account Role</label>
-              <div className="flex justify-center mx-auto p-1 bg-slate-100 rounded-xl">
+              <div className="grid p-1 bg-slate-100 rounded-xl">
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, role: "user" })}

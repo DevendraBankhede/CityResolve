@@ -13,6 +13,7 @@
   } from "lucide-react";
   import { useAuth } from "../context/AuthContext";
   import { notificationService } from "../services/notificationService";
+  import logo from "../assets/logo.png";
 
   const Navbar = () => {
     const { user, isAuthenticated, logout, role } = useAuth();
@@ -23,12 +24,6 @@
     const [notificationsOpen, setNotificationsOpen] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const [unreadCount, setUnreadCount] = useState(0);
-
-    useEffect(() => {
-      if (isAuthenticated) {
-        fetchNotifications();
-      }
-    }, [isAuthenticated, location.pathname]);
 
     const fetchNotifications = async () => {
       try {
@@ -41,6 +36,12 @@
         // Ignore background notification fetch errors
       }
     };
+
+    useEffect(() => {
+      if (isAuthenticated) {
+        fetchNotifications();
+      }
+    }, [isAuthenticated, location.pathname]);
 
     const handleMarkRead = async (id) => {
       try {
@@ -64,12 +65,12 @@
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
-            <div className="flex-1 flex items-center justify-start translate-x-6">
+            <div className="flex-1 flex items-center justify-start">
               <Link to="/" className="flex items-center gap-3 group">
                 <div className="w-10 h-10 bg-[#0088cc] rounded-xl flex items-center justify-center text-white shadow-md shadow-sky-600/20 group-hover:scale-105 transition-transform duration-200">
-                  <Building2 className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <div className="flex flex-col ">
+                <Building2 className="w-5 h-5 stroke-[2.2]" />
+              </div>
+                <div className="flex flex-col">
                   <span className="font-extrabold text-xl tracking-tight text-[#0f172a] leading-none">
                     City<span className="text-[#0088cc]">Resolve</span>
                   </span>
@@ -235,7 +236,7 @@
                   </div>
                 </div>
               ) : (
-                <div className="flex items-center gap-4 -translate-x-4">
+                <div className="flex items-center gap-4">
                   <Link
                     to="/login"
                     className="px-3 py-2 text-sm font-bold text-slate-800 hover:text-[#0088cc] transition"

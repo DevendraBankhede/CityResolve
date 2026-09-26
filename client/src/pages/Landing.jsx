@@ -135,10 +135,6 @@ const Landing = () => {
 
   const [activeFaq, setActiveFaq] = useState(null);
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
   const fetchStats = async () => {
     try {
       const res = await analyticsService.getOverview();
@@ -156,6 +152,10 @@ const Landing = () => {
     }
   };
 
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
   const toggleFaq = (idx) => {
     setActiveFaq(activeFaq === idx ? null : idx);
   };
@@ -167,19 +167,19 @@ const Landing = () => {
     },
     {
       question: "What is Duplicate Issue Detection?",
-      answer: "Before submitting a new report, CivicConnect scans existing active complaints nearby. If a neighbor has already reported the same pothole or broken streetlight, you can upvote their ticket instead of creating duplicates.",
+      answer: "Before submitting a new report, CityResolve scans existing active complaints nearby. If a neighbor has already reported the same pothole or broken streetlight, you can upvote their ticket instead of creating duplicates.",
     },
     {
       question: "How do I know when my reported issue is resolved?",
-      answer: "You receive real-time notifications at every stage: Acknowledged, In Progress, and Resolved. When municipal crews complete work, they upload a resolution proof photo so you can confirm and verify the fix.",
+      answer: "You receive real-time notifications at every stage: Acknowledged, In Progress, and Resolved. When RAJExpress crews complete work, they upload a resolution proof photo so you can confirm and verify the fix.",
     },
     {
       question: "Can I reopen an issue if it was not fixed properly?",
       answer: "Yes! If a resolved issue remains unsatisfactory or recurs immediately, citizens can click 'Reopen Issue' on their ticket detail page and submit a reason for municipal re-inspection.",
     },
     {
-      question: "Is CivicConnect free for citizens?",
-      answer: "100% free! CivicConnect is built to empower citizens and municipal authorities to collaborate seamlessly for cleaner, safer, and smarter cities.",
+      question: "Is CityResolve free for citizens?",
+      answer: "100% free! CityResolve is built to empower citizens and municipal authorities to collaborate seamlessly for cleaner, safer, and smarter cities.",
     },
   ];
 
@@ -449,7 +449,7 @@ const Landing = () => {
           <span className="text-xs font-extrabold uppercase tracking-wider text-[#0088cc] bg-[#e0f2fe] px-4 py-1.5 rounded-full border border-[#bae6fd]">
             Comprehensive Coverage
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a]">What Civic Issues Can You Report?</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a]">What City Issues Can You Report?</h2>
           <p className="text-slate-600 text-sm sm:text-base">
             From road damage to public lighting, select a category and submit your report directly to the correct department.
           </p>
@@ -711,7 +711,7 @@ const Landing = () => {
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Recent City Resolutions</h2>
             <p className="text-slate-600 text-sm sm:text-base">
-              Real examples of civic issues reported by citizens and successfully fixed by municipal departments.
+              Real examples of city issues reported by citizens and successfully fixed by municipal departments.
             </p>
           </div>
 
@@ -806,7 +806,7 @@ const Landing = () => {
           <div className="space-y-4 text-center md:text-left max-w-xl relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/30">
               <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-              <span>Join the Civic Movement</span>
+              <span>Join the City Movement</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
               Ready to Make Your Neighborhood Smarter?

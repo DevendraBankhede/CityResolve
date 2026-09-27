@@ -58,7 +58,7 @@ const Register = () => {
           formData.role === "admin" ? "/admin" : "/dashboard";
         navigate(redirectPath);
       } else {
-        toast.error(req.message || "Registeration failed");
+        toast.error(res.message || "Registration failed");
       }
     } catch (err) {
       toast.error(
@@ -69,10 +69,10 @@ const Register = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-state-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <div className="flex-1 flex flex-col justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3 mb-6">
-          <Link className="inline-flex items-center justify-center group">
+          <Link to="/" className="inline-flex items-center justify-center group">
             <div className="w-12 h-12 bg-[#0088cc] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-sky-600/20 group-hover:scale-105 transition-transform duration-200">
               <Building2 className="w-6 h-6 stroke-[2.2]" />
             </div>
@@ -82,7 +82,7 @@ const Register = () => {
               Create your CityResolve Account
             </h2>
             <p className="text-xs text-slate-500 mt-1 font-medium">
-              join thousands of citizens marking cities smarter
+              Join thousands of citizens making cities smarter
             </p>
           </div>
         </div>
@@ -95,7 +95,7 @@ const Register = () => {
                 <label className="block text-xs font-bold text-slate-700 mb-2">
                   Account Role
                 </label>
-                <div className="grid p-1bg-slate-100 rounded-xl">
+                <div className="grid p-1 bg-slate-100 rounded-xl">
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, role: "user" })}
@@ -106,7 +106,7 @@ const Register = () => {
                     }`}
                   >
                     <UserCheck className="w-4 h-4" />
-                    <span>CitZen</span>
+                    <span>Citizen</span>
                   </button>
                 </div>
               </div>
@@ -124,6 +124,7 @@ const Register = () => {
                     type="text"
                     name="name"
                     value={formData.name}
+                    onChange={handleChange}
                     placeholder="Rahul Sharma"
                     className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                     required
@@ -137,7 +138,7 @@ const Register = () => {
                   Email Address
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex item-center pointer-event-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                     <Mail className="w-4 h-4" />
                   </div>
                   <input
@@ -159,29 +160,29 @@ const Register = () => {
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                    <Lock className="w-4 h-4" />{" "}
+                    <Lock className="w-4 h-4" />
                   </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="......."
+                    className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
+                  </button>
                 </div>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="......."
-                  className="w-full pl-10 pr-10 p-2.5 bg-slate-50 border-slate-200 rounded-xl text-xl font-medium text-slate-900 focus:bg-white focus:outline-none focus:-ring-2 focus:-ring-blue-500 transition"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
-                </button>
               </div>
 
               {/* Confirm Password */}
@@ -191,20 +192,22 @@ const Register = () => {
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                     <Lock className="w-4 h-4" />
                   </div>
-                  <input type="password"
-                          name="confirmPassword"
-                          value={formData.confirmPassword}
-                          onChange={handleChange} 
-                          placeholder="......."
-                          className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900  focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                          required
-                          />
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange} 
+                    placeholder="......."
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    required
+                  />
                 </div>
               </div>
 
-              <button type="submit" 
-                      disabled={loading}
-                      className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center justify-center gap-2 disabled:opacity-50"
+              <button
+                type="submit" 
+                disabled={loading}
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
               >
                 {loading ? "Creating Account..." : "Create Account"}
               </button>
@@ -212,8 +215,8 @@ const Register = () => {
 
             <div className="mt-6 text-center text-xs text-slate-600">
               Already have an account?{" "}
-              <Link className="font-bold text-blue-600 hover:underline">
-              Sing in
+              <Link to="/login" className="font-bold text-blue-600 hover:underline">
+                Sign in
               </Link>
             </div>
           </div>

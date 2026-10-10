@@ -5,6 +5,16 @@ import Department from "./models/department.model.js";
 import Issue from "./models/issue.model.js";
 import Notification from "./models/notification.model.js";
 
+import dns from "dns";
+
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch (e) {}
+
+if (dns.setDefaultResultOrder) {
+  dns.setDefaultResultOrder("ipv4first");
+}
+
 dotenv.config();
 
 const defaultDepartments = [
@@ -52,7 +62,7 @@ const defaultDepartments = [
 
 const seedDatabase = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI || process.env.MONGO_DB_URL);
     console.log("Connected to MongoDB for Seeding...");
 
     // Seed Departments

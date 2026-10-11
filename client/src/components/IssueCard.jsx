@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import { MapPin, ThumbsUp, Calendar, ArrowRight, Building2 } from "lucide-react";
 import IssueStatusBadge from "./IssueStatusBadge";
 import { formatDate, getImageUrl, getPriorityBadgeClass } from "../utils/helpers";
+import { useAuth } from "../context/AuthContext";
 
 const IssueCard = ({ issue, onUpvote, isUpvoted = false }) => {
+  const { user } = useAuth();
+  const currentUserId = user?._id || user?.id;
+  const hasUpvoted =
+    isUpvoted ||
+    (Boolean(currentUserId) &&
+      issue.upvotes?.some(
+        (u) => (typeof u === "object" ? u?._id : u) === currentUserId
+      ));
   const coverImage = issue.images && issue.images.length > 0 ? getImageUrl(issue.images[0]) : getImageUrl(null);
 
   return (
@@ -67,12 +76,12 @@ const IssueCard = ({ issue, onUpvote, isUpvoted = false }) => {
             <button
               onClick={() => onUpvote && onUpvote(issue._id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${
-                isUpvoted
+                hasUpvoted
                   ? "bg-blue-600 text-white border-blue-600 shadow-sm"
                   : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
               }`}
             >
-              <ThumbsUp className={`w-3.5 h-3.5 ${isUpvoted ? "fill-current" : ""}`} />
+              <ThumbsUp className={`w-3.5 h-3.5 ${hasUpvoted ? "fill-current" : ""}`} />
               <span>{issue.upvoteCount || issue.upvotes?.length || 0} Upvotes</span>
             </button>
 

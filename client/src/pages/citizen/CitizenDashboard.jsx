@@ -8,8 +8,8 @@ import {
   PlusCircle,
   TrendingUp,
   MapPin,
+  RefreshCw,
 } from "lucide-react";
-import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import IssueCard from "../../components/IssueCard";
 import Loader from "../../components/Loader";
@@ -26,7 +26,7 @@ const CitizenDashboard = () => {
     try {
       setLoading(true);
       setError(null);
-      const res = await issueService.getMyIssues({ limit: 10 });
+      const res = await issueService.getMyIssues({ limit: 50 });
       if (res.success && res.data?.issues) {
         setIssues(res.data.issues);
       }
@@ -61,7 +61,6 @@ const CitizenDashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      <Navbar />
 
       <div className="flex-1 flex w-full">
         <Sidebar />
@@ -74,13 +73,23 @@ const CitizenDashboard = () => {
               <p className="text-xs text-slate-500 mt-1">Track and manage all your reported civic issues in real-time.</p>
             </div>
 
-            <Link
-              to="/report-issue"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md shadow-blue-500/20 transition"
-            >
-              <PlusCircle className="w-4 h-4" />
-              Report New Issue
-            </Link>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={fetchMyIssues}
+                className="p-2.5 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded-xl transition border border-slate-200"
+                title="Refresh Issues"
+              >
+                <RefreshCw className="w-4 h-4" />
+              </button>
+
+              <Link
+                to="/report-issue"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md shadow-blue-500/20 transition"
+              >
+                <PlusCircle className="w-4 h-4" />
+                Report New Issue
+              </Link>
+            </div>
           </div>
 
           {/* Metric Cards */}

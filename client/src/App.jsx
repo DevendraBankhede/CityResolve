@@ -12,6 +12,12 @@ import ResetPassword from "./pages/ResetPassword";
 import MapView from "./components/Mapview";
 import CityMap from "./pages/citizen/CityMap";
 import CitizenDashboard from "./pages/citizen/CitizenDashboard";
+import ReportIssue from "./pages/citizen/ReportIssue";
+import MyIssues from "./pages/citizen/MyIssues";
+import Profile from "./pages/citizen/Profile";
+import Notifications from "./pages/citizen/Notifications";
+import IssueDetails from "./pages/citizen/IssueDetails";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -30,7 +36,64 @@ function App() {
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/mapview" element={<MapView />} />
             <Route path="/city-map" element={<CityMap />} />
-            <Route path="/dashboard" element={<CitizenDashboard />} />
+
+            {/* Authenticated Citizen Routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <CitizenDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/report-issue"
+              element={
+                <ProtectedRoute>
+                  <ReportIssue />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-issues"
+              element={
+                <ProtectedRoute>
+                  <MyIssues />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                <ProtectedRoute>
+                  <Notifications />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/issues/:id"
+              element={
+                <ProtectedRoute>
+                  <IssueDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/issue/:id"
+              element={
+                <ProtectedRoute>
+                  <IssueDetails />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
       </AuthProvider>

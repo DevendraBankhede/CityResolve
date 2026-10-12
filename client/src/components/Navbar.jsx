@@ -58,7 +58,27 @@
     };
 
     const dashboardPath = role === "admin" ? "/admin" : "/dashboard";
-    const hasSidebar = isAuthenticated && location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/register";
+    const hiddenNavbarRoutes = [
+      "/dashboard",
+      "/report-issue",
+      "/my-issues",
+      "/profile",
+      "/notifications",
+      "/issues",
+      "/issue",
+      "/admin",
+      "/login",
+      "/register",
+    ];
+
+    const shouldHideNavbar = hiddenNavbarRoutes.some(
+      (route) =>
+        location.pathname === route || location.pathname.startsWith(`${route}/`)
+    );
+
+    if (shouldHideNavbar) {
+      return null;
+    }
 
     return (
       <header className="sticky top-5 inset-x-0 mx-auto w-[calc(100%-2rem)] max-w-7xl rounded-3xl z-50 bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-md transition-all duration-300">

@@ -14,7 +14,6 @@ import {
   MessageSquare,
 } from "lucide-react";
 import toast from "react-hot-toast";
-import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import IssueStatusBadge from "../../components/IssueStatusBadge";
 import IssueTimeline from "../../components/IssueTimeline";
@@ -120,7 +119,6 @@ const IssueDetails = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-        <Navbar />
         <div className="flex-1 flex w-full">
           <Sidebar />
           <main className="flex-1 p-8">
@@ -134,7 +132,6 @@ const IssueDetails = () => {
   if (error || !issue) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-        <Navbar />
         <div className="flex-1 flex w-full">
           <Sidebar />
           <main className="flex-1 p-8">
@@ -150,8 +147,6 @@ const IssueDetails = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      <Navbar />
-
       <div className="flex-1 flex w-full">
         <Sidebar />
 

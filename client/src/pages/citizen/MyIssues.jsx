@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Search, Filter, PlusCircle, RefreshCw } from "lucide-react";
-import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import IssueCard from "../../components/IssueCard";
 import Loader from "../../components/Loader";
@@ -66,8 +65,6 @@ const MyIssues = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      <Navbar />
-
       <div className="flex-1 flex w-full">
         <Sidebar />
 

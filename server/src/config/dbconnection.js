@@ -12,8 +12,8 @@ if (dns.setDefaultResultOrder) {
 }
 
 const connectDB = async () => {
-    const primaryUri = process.env.MONGO_URI;
-    const localUri = "mongodb://127.0.0.1:27017";
+    const primaryUri = process.env.MONGO_URI || process.env.MONGO_DB_URL || process.env.MONGODB_URI;
+    const localUri = "mongodb://127.0.0.1:27017/cityresolve";
 
     if (primaryUri) {
         try {

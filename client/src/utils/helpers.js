@@ -13,6 +13,23 @@ export const formatDate = (dateString) => {
   }
 };
 
+export const formatDateTime = (dateString) => {
+  if (!dateString) return "N/A";
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "N/A";
+    return date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return "N/A";
+  }
+};
+
 export const getImageUrl = (imagePath) => {
   if (!imagePath) {
     return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300' fill='%23f1f5f9'><rect width='400' height='300' fill='%23f1f5f9'/><path d='M160 130 L200 90 L240 130 L240 210 L160 210 Z' fill='%23cbd5e1'/><circle cx='200' cy='120' r='15' fill='%230284c7'/><text x='200' y='250' font-family='sans-serif' font-size='14' font-weight='bold' fill='%2364748b' text-anchor='middle'>No Image Available</text></svg>";

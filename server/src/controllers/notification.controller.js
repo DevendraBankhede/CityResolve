@@ -3,12 +3,12 @@ import { successResponse, errorResponse } from "../utils/response.js";
 
 export const getNotifications = async (req, res) =>{
     try{
-        const notifications = await Notification.find({ user:req.user._id })
-        .populate("issue", "titel status category")
+        const notifications = await Notification.find({ user: req.user._id })
+        .populate("issue", "title status category")
         .sort({ createdAt: -1 });
 
         const unreadCount = await Notification.countDocuments({
-            user:req.user_id,
+            user: req.user._id,
             isRead: false,
         });
 
